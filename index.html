@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./assets/download.jpeg" type="image/x-icon">
+    <title>Password Strength Checker</title>
+
+    <style>
+         body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./assets/img2.webp') no-repeat center/cover;
+            opacity: 0.9; 
+            z-index: -1; 
+        }
+        .form {
+            background: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); 
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+            margin-top: 150px !important;
+        }
+        #strength{
+            font-size: 28px;
+        }
+        .main_head{
+            font-size: 28px;
+            font-weight: 700;
+            color: #333333;
+            color: black;
+        }
+        .label_pswd{
+            font-size: 18px;
+            color: black;
+            font-weight: 700;
+        }
+        #warning{
+            color: black;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        @media (max-width:600px){
+        .form{
+            width: auto !important;
+        }
+        #strength{
+            font-size: 24px;
+        }
+        .main_head{
+            font-size: 21px;
+            font-weight: 700;
+            color: #333333;
+            color: black;
+        }
+        .label_pswd{
+            font-size: 15px;
+            color: black;
+            font-weight: 700;
+        }
+        #warning{
+            color: black;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        }
+    </style>
+
+
+</head>
+<body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <form class="border border-dark p-5 w-75 mt-5 d-block mx-auto rounded-3 form">
+                        <h4 class="main_head">Password Strength Checker</h4>
+                        <div class="mb-3 mt-5">
+                          <label for="Password" class="form-label label_pswd">Password </label>
+                          <input type="password" class="form-control" id="Password" name="password" placeholder="Enter your password" oninput="checkPasswordStrength()">
+                        </div>
+                        <p id="strength" class="fw-bold"></p>
+                        <p id="warning"></p>
+                        <button type="button" class="btn btn-info mt-4 ms-2" onclick="clearPassword()">Clear</button>
+                    </form>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    
+
+
+
+
+
+
+        <script>
+            function checkPasswordStrength() {
+                let password = document.getElementById("Password").value;
+                let strengthText = document.getElementById("strength");
+                let warningText = document.getElementById("warning");
+        
+                if (password.length >= 8 && /\d/.test(password) && /[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                    strengthText.textContent = "Your password is Strong";
+                    warningText.textContent="";
+                    strengthText.style.color = "green";
+                } else if (password.length >= 6 && /\d/.test(password)) {
+                    strengthText.textContent = "Your password is Medium";
+                    warningText.textContent="";
+                    strengthText.style.color = "orange";
+                } else {
+                    strengthText.textContent = "Your password is Weak";
+                    warningText.textContent ="Your password must include at least one lowercase letter, one uppercase letter, one number, and one special character (!@#$%^&*).";
+                    strengthText.style.color = "red";
+                }
+            }
+        
+            function clearPassword() {
+                document.getElementById("Password").value = "";
+                document.getElementById("strength").textContent = "";
+                document.getElementById("warning").textContent="";
+            }
+        </script>
+        
+</body>
+</html>
