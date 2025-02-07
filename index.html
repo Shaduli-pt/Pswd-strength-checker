@@ -116,15 +116,15 @@
                 let warningText = document.getElementById("warning");
         
                 if (password.length >= 8 && /\d/.test(password) && /[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-                    strengthText.textContent = "Your password is Strong";
+                    strengthText.textContent = "Password strength : Strong";
                     warningText.textContent="";
                     strengthText.style.color = "green";
                 } else if (password.length >= 6 && /\d/.test(password)) {
-                    strengthText.textContent = "Your password is Medium";
+                    strengthText.textContent = "Password strength : Medium";
                     warningText.textContent="";
                     strengthText.style.color = "orange";
                 } else {
-                    strengthText.textContent = "Your password is Weak";
+                    strengthText.textContent = "Password strength : Weak";
                     warningText.textContent ="Your password must include at least one lowercase letter, one uppercase letter, one number, and one special character (!@#$%^&*).";
                     strengthText.style.color = "red";
                 }
